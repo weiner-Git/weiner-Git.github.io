@@ -1,6 +1,15 @@
 # weiner blog
 
-## 这个人很懒 什么也没写
+## 欢迎来到我的blog
 
+菜单
 
-关于[blog](#!/about.md)
+**
+
+**
+
+**
+
+![Mou icon](http://static.app.weinerce.com/blog/4.jpeg)
+
+关于[blog](#!/info.md)
