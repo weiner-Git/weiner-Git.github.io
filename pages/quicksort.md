@@ -71,7 +71,7 @@ int main(int argc, const char * argv[]) {
     }
 }
 ```
-![alt](http://ocaya4boy.bkt.clouddn.com/image/c_quick_sort.jpeg?imageView2/1/w/200/h/250)
+![alt](http://ocaya4boy.bkt.clouddn.com/image/c_quick_sort.jpeg)
 a[i] = a[j]作用是，那么把a[j]放到基准的位置，如果基准 <= a[j],那就是把a[j-1]放到基准的位置，a[j] = a[i]是a[j]原位置没有变动。如果如果基准大于a[i]（也就是a[j-1]）,那么i++后的a[j] = a[i]也就等于a[j-1] = a[i+1]，这样把a[j-1]向基准昨天挪，然后基准的位置i+1,向后挪一位，也就是下面的这个a[i] = key;保证基准的值和根据i值确定基准位置,这里有点绕。跟着调试走一遍能更直观的理解。
 
 这里要注意while里面的两个if判断，判断条件要正好匹配完成，不要都包含=号，题主这里都用了‘=’，出现了42，49位置错误，调试的时候发现i++和j++都执行了，犯了个错误。
@@ -107,5 +107,5 @@ $result = quickSort($arr);
 print_r($result);
 ?>
 ```
-![alt](http://ocaya4boy.bkt.clouddn.com/image/php_quick_sort.jpeg?imageView2/1/w/200/h/250)
+![alt](http://ocaya4boy.bkt.clouddn.com/image/php_quick_sort.jpeg)
 题主是用世界上最好的语言的人 :)
