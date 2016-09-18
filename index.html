@@ -10,25 +10,39 @@
         #body h1:first-child{ display:none }
         footer { font-size:0.8em; text-align:right }
         a, a:visited {  text-decoration:none }
-        .container{position:relative;width:100%;min-height:100%;}
-        .body{padding-bottom:50px;}
-        .footer{height:50px;position:absolute;bottom:0px;left:0px;}
+        .center-body {
+          width: 70%;
+          position: absolute;
+          top: 15%;
+          left: 15%;
+          min-height:200px;
+          color: #333;
+          /*background-color: #b7b6b6;*/
+        }
+        .center-div {
+          position: relative;
+          margin-top:20px;
+          margin-left:20px;
+          margin-right:20px;
+        }
     </style>
     <link rel="stylesheet" href="stylesheets/github-dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
-  <body>
-    <div class="wrapper">
+  <body style="background-color:#d0cfcf;">
+    <div>
       <header>
-      <h1 align="center"><a href="#!/index.md">Weiner</a></h1>
+      <h1 align="center"><a style="color: #333;" href="#!/index.md">Weiner博客</a></h1>
       </header>
-      <section id="body">
-        &gt; loading...
+      <div class="center-body">
+      <section id="body" class="center-div">
+         &gt; loading...
       </section>
+      </div>
     </div>
     <footer>
-      <p>一名抽烟、喝酒、烫头的coder</p>
+      <p style=" margin-right:13%;">抽烟、喝酒、烫头的 coder</p>
     </footer>
     
     <script src="javascripts/zepto.min.js"></script>
