@@ -69,9 +69,9 @@ redis更多场景是作为memcache的替代者来使用;当需要除key/value之
 
 ```
 
-zadd(tag_id, time, uid)；	//	为标签添加用户id，用时间戳为score
+zadd(tag_id, score, uid)；	//	为标签添加用户id
 
-zadd(tag_id)；	//	为用户打标签，用时间戳为score
+zadd(uid, score, tag_id)；	//	为用户打标签
 ```
 
 用zcard统计标签使用量，用zrevrange返回用户标签id信息。这里单品牌3000w条标签数据使用正常。还有关联上一条命令就是产品里面有多个品牌，对每个品牌打标签时候使用hIncrBy分别统计单品牌总标签数量。
