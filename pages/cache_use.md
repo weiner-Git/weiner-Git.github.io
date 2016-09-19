@@ -56,5 +56,27 @@ redis：不仅仅支持简单的k/v类型的数据，同时还提供list，set�
 redis更多场景是作为memcache的替代者来使用;当需要除key/value之外的更多数据类型支持时，使用redis更合适;当存储的数据不能被剔除时，对数据持久化和数据同步要求的使用redis更合适。
 
 
+**redis在项目中的应用**
+先介绍一下redis的五种结构类型
+
+* string ：普通的key/value类型都是此类型结构存储，常用命令：set、get、mget、incr、decr等
+* hash ：当value是一个hashMap结构时会使用该结构，map中的结构是field=>value，可以通过key+field来对响应的数据进行操作。常用命令有hset、hget、hgetall。
+* list ：list列表底层采用双端链表结构，这样在操作遍历查找时候非常方便。常用命令：lpush、rpush、lpop、rpop、lrange。
+* set ：set集合，可以理解集合是排重的列表，在集合里面不会保存重复数据。常用命令：sadd、spop、smembers、sunion
+* sorted set ：有序集合，与set的区别是有序集合根据score参数来进行排序的。常用命令：zadd、zrange、zrem、zcard。
+
+这里介绍一下有序集合的使用：标签系统，现在有近两百万的粉丝，每个粉丝都会有一些标签，最近统计了一下mysql中存了大约2800w条标签。其实单表280w统计信息时候就已经要长时间了，当表扩大10倍mysql中更难处理了；并且需要两个维度，一时根据粉丝id获取标签，另一个就是根据标签id获取粉丝id、对粉丝id的统计处理。这里就利用到了有序集合。
+
+```
+
+zadd(tag_id, time, uid)；	//	为标签添加用户id，用时间戳为score
+
+zadd(tag_id)；	//	为用户打标签，用时间戳为score
+```
+
+用zcard统计标签使用量，用zrevrange返回用户标签id信息。这里单品牌3000w条标签数据使用正常。还有关联上一条命令就是产品里面有多个品牌，对每个品牌打标签时候使用hIncrBy分别统计单品牌总标签数量。
+
+队列使用：群发、任务脚本、后台信息同步等等。
+通过push和pop往队列里面插入和消费，对消费失败的再次加入队列或者记录一下。对非实时的信息通过队列来处理缓解服务器压力。队列使用很常见，很多地方都会用到。
 
 
