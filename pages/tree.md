@@ -31,7 +31,7 @@
 
 递归实现的方法：以前序遍历为示例，其它可以调换一下输出的位置来实现打印顺序。
 
-```
+```c
 void preorder(bintree t){
     if(t){
         printf("%c ",t->data);
@@ -79,7 +79,7 @@ void preorder(bintree t){
 
 下面是伪代码：
 
-```
+```c
 delete(tree, node){
 	node f;
 	//	先查找节点
