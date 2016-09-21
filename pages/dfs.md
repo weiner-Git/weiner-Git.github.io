@@ -145,7 +145,7 @@ v8 	  v7
 
 伪代码：
 
-```
+```c
 DFS(Node root) 
 	root.visited = true;
 	foreach(v w)) /*w是v的邻节点*/
