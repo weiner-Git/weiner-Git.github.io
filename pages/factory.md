@@ -6,7 +6,7 @@
 
 下面是php示例的代码：
 
-```
+```php
 <?php 
 //	定义button接口类
 interface ButtonFactory(){
