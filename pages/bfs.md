@@ -69,7 +69,7 @@ v8的邻节点，都被标记了，没有节点需要入队<br />
 
 伪代码：
 
-```
+```c
 void search(Node root) 
 	Queue queue = new Queue();
 	root.visited = true;
