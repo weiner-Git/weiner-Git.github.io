@@ -75,6 +75,6 @@ protected function parseDoc($ref) {
     }
 ```
 
-信息也获取到了下面就是展示了。通过页面参数（aliases的key+controller名称或是参数可以是类的集合数组的下标）来访问。功能不是功能不是
+信息也获取到了下面就是展示了。通过页面参数（aliases的key+controller名称或是参数可以是类的集合数组的下标）来访问。功能不是通用，可以按照这个方法嵌入自己需要的逻辑处理。
 
 ![for exp](http://ocaya4boy.bkt.clouddn.com/desc.jpeg)
