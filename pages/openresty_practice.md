@@ -53,7 +53,7 @@ openresty的输出有两种：
 
 这两种方法都是异步输出响应体，区别是ngx.say 会对输出响应体多输出一个 \n，ngx.print的输入参数可以是单个或多个字符串参数，也可以是table对象。这里要及时的响应，用ngx.flush()，显式的向客户端刷新响应输出。
 
-```
+```lua
 ngx.print(data)
 ngx.flush(true)
 ```
@@ -64,7 +64,7 @@ ngx.flush(true)
 3.1.1 JSON <br />
 微信响应的消息大多数都为json格式，cjson是一个很好用的解析器,openresty自带直接require就可以使用，window用户可以选择dkjson<br />
 
-```
+```lua
 local cjson = require "cjson"
 cjson.encode(args)
 cjson.decode(args)
@@ -72,7 +72,7 @@ cjson.decode(args)
 3.1.2 XML<br />
 上面介绍了xmlSimple来解析，这里介绍一下用lua的xml来创建xml<br />[Lua Xml](http://viremo.eludi.net/LuaXML/)的文档地址，这里要注意一下lua xml安装后require("LuaXml")后，就可以直接只用xml，并不需要local luaxml = require("LuaXml")，这个时候你使用luaxml会发现并没有加载xml的方法，因为luaxml安装后是全局变量直接使用xml就好了。<br />
 
-```
+```lua
 local xmlData = xml.new("xml")	--创建跟xml
 local ToUserName = xml.new("ToUserName") --创建一个元素
 table.insert(ToUserName, "<![CDATA[lua_table.open_id]]")	--为元素赋值
@@ -84,12 +84,12 @@ ngx.log(ngx.STDERR, "xmlData: ", xmlData)	-- 这个时候可以在log中查看�
 3.1.3 数组<br />
 lua中数组下标是以1开始计算的
 
-```
+```lua
 local data = {1, 2}
 ```
 openresty中有个稀疏数组问题 
 
-```
+```lua
 local cjson = require("cjson")
 
 local data = {1, 2}
@@ -110,7 +110,7 @@ table类型实现了一种抽象的“关联数组”。“关联数组”是一
 
 数据存储这里使用的是redis和mysql结合，openresty有[lua-resty-mysql](https://github.com/openresty/lua-resty-mysql)、[lua-resty-redis](https://github.com/openresty/lua-resty-redis)这两个组件，功能上都能满足开发需求，不满足的地方可以扩展一下。
 
-```
+```lua
 local redis = require "redis_iresty"  -- 这里使用openresty最佳实践中redis的二次封装文件，所有的连接创建、销毁连接、连接池部分，都被完美隐藏了，我们只需要业务就可以了。给作者点个赞！！！
 local ok, err = red:rpush("resque:queue:wechat", cjson.encode(args))
 if not ok then
@@ -127,7 +127,7 @@ end
 
 cat一下ttime.lua文件，下面是代码：
 
-```
+```lua
 local ffi = require("ffi") 
 
 local _M = {}
@@ -157,7 +157,7 @@ return _M
 openresty中默认使用的LuaJit，LuaJit中提供了FFI，通过FFI的方式加载其他C接口动态库，这样我们就可以有很多有意思的玩法。
 示例：
 
-```
+```lua
 local ffi = require("ffi")  --加载FFI库
 ffi.cdef[[
 int printf(const char* fmt, ...);
@@ -167,7 +167,7 @@ ffi.C.printf("Hello %s!", "world") -- 调用命名的C函数——非常简单
 
 在重写模块时候需要把在lua中按照php-resque的存储格式入队，在源码中有这样一段
 
-```
+```lua
 Resque::push($queue, array(
 			'class'	=> $class,
 			'args'	=> array($args),
@@ -182,7 +182,7 @@ php中microtime()函数返回的是当前时间戳以及微秒数，lua库中时
 在ttime.lua中的 setmetatable()方法来设置和修改table的元素，任何table都可以作为任何值得元表，也可以和其它table共享一个元表，也可以做自己的元表。
 ttime.lua里面的mt是集合的元表，现在把_M 赋值给\_\_index元方法，现在的\_\_index为一个table，它也可以是一个function。在表new的时候通过setmetatable()为table把两个table的元素“+”操作。
 
-```
+```lua
 local ttime = require "ttime"
 local t     = ttime.new()
 local queue_time = os.time() .. t.usec		-- t.usec为微秒数
