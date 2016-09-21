@@ -24,7 +24,7 @@
 
 1.首选说一下数据接收，该消息模块接收微信服务器发送来的数据，所以数据结构都是xml格式的；这里使用的xmlSimple来解析xml，xmlSimple没有对xml中的CDATA解析，修改xmlSimple.lua添加了一个过滤
 
-```
+```lua
 -- 过滤微信xml数据格式
 function XmlParser:formatText(text)
     if string.find(text, "<!%[CDATA%[") then
