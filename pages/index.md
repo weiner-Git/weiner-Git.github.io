@@ -26,6 +26,7 @@
 
 **学习笔记**
 
+* [MySql的InnoDB、MyISAM引擎使用与索引](#!/mysql_index.md)
 
 **内核学习笔记**
 
