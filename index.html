@@ -11,13 +11,25 @@
         footer { font-size:0.8em; text-align:right }
         a, a:visited {  text-decoration:none }
         .center-body {
-          width: 60%;
+          width: 75%;
           position: absolute;
           top: 12%;
-          left: 20%;
+          left: 12.5%;
           min-height:200px;
           color: #333;
+          min-width: 550px;
           /*background-color: #b7b6b6;*/
+        }
+        @media screen and (min-width:1200px){ 
+          .center-body {
+            width: 900px;
+            position: absolute;
+            top: 12%;
+            min-height:200px;
+            color: #333;
+            left:calc((100% - 900px)/2);
+            /*background-color: #b7b6b6;*/
+          }
         }
         .center-div {
           position: relative;
