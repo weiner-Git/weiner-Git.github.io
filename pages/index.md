@@ -18,6 +18,7 @@
 * [openresty简单使用](#!/openresty_practice.md)
 * [php简易在线接口文档](#!/php_online_note.md)
 * [设计兑奖码](#!/code.md)
+* [angular应用](#!/angular_1.md)
 
 **概念分析**
 
