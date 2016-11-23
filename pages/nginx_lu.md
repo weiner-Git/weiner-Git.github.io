@@ -116,4 +116,4 @@ HTTP配置块中包含server块，location块，upstream，if块等，这些都�
 
   backup：不适用ip_hash情况下的备份服务器。
 
-  proxy_pass：反向代理，把请求转发到指定的服务器上。
+  proxy_pass：反向代理，把请求转发到指定内部的服务器上，可以配合upstream使用。
