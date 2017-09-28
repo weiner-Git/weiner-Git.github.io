@@ -36,6 +36,10 @@
 
 * [变量引用](#!/php_%26.md)
 
+**白帽养成记**
+* [xss开发防范笔记](#!/learn_xss.md)
+* [php开发安全注意事项](#!/php_vul1.md)
+
 附带两张我家三儿和大白的靓照<br /><br />
 ![san](http://ocaya4boy.bkt.clouddn.com/1327A7E9B93CDE189D17FD9FC1BDD712.jpg?imageView2/0/w/300)![san](http://ocaya4boy.bkt.clouddn.com/WechatIMG2.jpeg?imageView2/0/h/300/w/300)![dabai](http://ocaya4boy.bkt.clouddn.com/WechatIMG3.jpeg?imageView2/0/h/300/w/300)<br /><br /><br />
 
