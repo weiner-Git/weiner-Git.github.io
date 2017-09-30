@@ -58,16 +58,16 @@
 &nbsp;环境变量
 
 ####常见的风险
-*可操作的参数名*
+######可操作的参数名
 
 ```php
 foreach($_GET AS $key=> $val){
 	print $key."\n";
 }
 ```  
-可以根据使用key的函数来触发漏洞
+可以根据使用key的函数来触发漏洞，使用是要注意名称过滤、校验。
 
-*变量覆盖*  
+######变量覆盖  
 
 ```php
 //url = ?var=1&a[1]=var1%3d222
@@ -76,14 +76,31 @@ $var1 = 'init';
 parse_str($a[$_GET['var']]);
 print $var1;
 ```
+规避方法：变量尽量不要可外部控制
 
-*eval/preg_replace命令执行*  
+######eval/preg_replace命令执行  
 特别容易的拿shell  
+规避方法：
 
-*字符串截断*  
+######字符串截断  
 [iconv](http://www.cnseay.com/3700/)   
-[字符串编码](http://www.cnblogs.com/hongfei/p/3893305.html)
+[字符串编码](http://www.cnblogs.com/hongfei/p/3893305.html)  
 [特殊字符null](http://php.net/manual/zh/security.filesystem.nullbytes.php)
+
+规避方法：对长度，类型，内容，路径检查，对特殊字符注意转换。
+
+######文件包含  
+  *  php include、require在加载文件时，只要是文件内容符合php语法规范，那么任何格式的文件都会被解析。   
+例如: phpinfo.txt (内容<?php phpinfo();?>) include('phpinfo.txt');也会正常输出phpinfo内容。  
+  * 远程包含
+  php允许加载远程文件内容，通过php.ini allow_url_include = Off关闭
+  规避方法：尽量不用动态包含，文件白名单验证，路径限制，参数尽量外部不可控制。
+ 
+######上传
+    
+  * cgi解析漏洞，当文件不存在时候向前递归（/x.txt/x.php, 当x.php不存在时候会解析x.txt)  
+  * 文件中嵌入php代码。
+ 规避方法：黑白名单，MIME类型验证，目录验证，重命名
 
 
 待补充ing...
